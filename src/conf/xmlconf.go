@@ -9,6 +9,7 @@ import (
 
 // PortalConf portal conf
 type PortalConf struct {
+	Ip           string `xml:"ip"`
 	Port         string `xml:"port"`
 	Proto        string `xml:"proto"`
 	ProtoModName string `xml:"proto_mod_name"`
@@ -23,6 +24,8 @@ type ServerConf struct {
 	PortalConf PortalConf `xml:"portal"`
 	Comment    string     `xml:",comment"`
 }
+
+
 
 // HttpServerConf cache sever conf
 var HttpServerConf ServerConf
