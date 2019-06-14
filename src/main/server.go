@@ -22,7 +22,7 @@ func SayHello(w http.ResponseWriter, request *http.Request) {
 
 
 	//获取输入的地址是获取输入得 os 数据的 第一个位置的值
-	serverAddress := conf.HttpServerConf.PortalConf.Ip + ':' +conf.HttpServerConf.PortalConf.Port
+	serverAddress := conf.HttpServerConf.PortalConf.Ip + ":" +conf.HttpServerConf.PortalConf.Port
 	fmt.Println("severAddress : ",serverAddress)
 	// //DelayHTTP在指定的网络地址连接到HTTP RPC服务器
 	///在默认HTTP RPC路径上监听。
