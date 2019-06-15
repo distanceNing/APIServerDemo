@@ -3,8 +3,8 @@ package conf
 import (
 	"encoding/xml"
 	"fmt"
-	"log"
 	"os"
+	"../logger"
 )
 
 // PortalConf portal conf
@@ -34,12 +34,12 @@ var HttpServerConf ServerConf
 func ParseConf(fileName string) bool {
 	file, err := os.Open(fileName)
 	if err != nil {
-		log.Println("open conf file err : ", err)
+		logger.Error("open conf file err : ", err)
 		return false
 	}
 	fileinfo, err := file.Stat()
 	if err != nil {
-		log.Println("file stat err : ", err)
+		logger.Error("file stat err : ", err)
 		return false
 	}
 	filesize := fileinfo.Size()
@@ -50,7 +50,7 @@ func ParseConf(fileName string) bool {
 
 	err = xml.Unmarshal(buffer, &HttpServerConf)
 	if err != nil {
-		log.Println("xml parse err : ", err)
+		logger.Error("xml parse err : ", err)
 		return false
 	}
 
