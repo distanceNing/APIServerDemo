@@ -1,0 +1,77 @@
+//这是我的第一个简单的程序
+	//fmt.Println("Hello, World!")
+	/*http.HandleFunc("/", func(writer http.ResponseWriter,
+		request *http.Request) {
+		fmt.Fprintln(writer, "<h1>hello world 155</h1>")
+	})
+	http.ListenAndServe("192.168.155.1:8000", nil)
+	*/
+	//json 编码
+
+	//reduceFileName := "test.txt"
+	/*mapResult := map[string]string{"France": "Paris", "Italy": "Rome", "Japan": "Tokyo", "India": "New delhi"}
+
+
+	//slcD := []string{"apple", "peach", "pear"}
+	slcB, _ := json.Marshal(mapResult)
+	fmt.Println(string(slcB))
+	res := ioutil.WriteFile(reduceFileName,slcB,0777)
+
+	if res != nil {
+		fmt.Println("write file err : " + res.Error())
+	}
+
+	reducefd, err := os.OpenFile(reduceFileName, os.O_RDWR, 0777) //打开文件
+	if err != nil {
+		fmt.Println("open file error")
+	}
+
+	enc := json.NewEncoder(reducefd)
+	d := map[string]int{"apple": 5, "lettuce": 7}
+	for _, kv := range d {
+		err2 := enc.Encode(&kv)
+		if err2 != nil {
+			fmt.Println("encode : " + err2.Error())
+		}
+	}
+	//reducefd1, err1 := os.Open(reduceFileName)
+	//reducefd, err := os.OpenFile(reduceFileName,os.O_RDWR,0777) //打开文件
+	if err != nil {
+		fmt.Println("open file error")
+	}
+
+	dec := json.NewDecoder(reducefd)
+	result := []KeyValue{}
+	decoder := json.NewDecoder(reducefd)
+	err = decoder.Decode(&result)
+	if err != nil {
+		fmt.Println("decoder error", err.Error())
+	}
+
+	fmt.Println(result)
+	var mapRes map[string]string
+	mapRes = make(map[string]string)
+	for {
+		var kv KeyValue
+
+		err := dec.Decode(&kv)
+		fmt.Println(kv.Value)
+		if err != nil {
+			fmt.Println("Decode error", err.Error())
+			break
+		}
+		mapRes[kv.Key] = kv.Value
+		//use v
+	}
+	for country := range mapRes {
+		fmt.Println(country, mapRes[country])
+	}
+
+	fmt.Println(mapRes)
+
+	/*err1 := enc.Encode(d)
+	if err1 != nil {
+		fmt.Println("write file err : " + err1.Error())
+	}
+	defer reducefd.Close()
+	*/
