@@ -30,7 +30,7 @@ func channelHandler(argMap map[string]string, reply *ReplyMsg) (bool) {
 	if err != nil {
 		log.Fatal("Call ChannelService error:", err)
 	}
-	log.Printf("Arith reply :",reply)
+	log.Printf("Channle svr reply :",reply)
 
 	return true
 }
