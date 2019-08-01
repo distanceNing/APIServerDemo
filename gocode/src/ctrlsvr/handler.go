@@ -12,7 +12,12 @@ func AccessRiskCtrl(argMap map[string]string) (bool) {
 	return true
 }
 
-
+func deliveryHandler(argMap map[string]string, reply *ReplyMsg) (bool) {
+	log.Println("delivery successful")
+	reply.ErrorNum = errno.SUCCESS
+	reply.ErrorInfo = "successful"
+	return true
+}
 
 
 func channelHandler(argMap map[string]string, reply *ReplyMsg) (bool) {

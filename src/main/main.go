@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	confFileName := "/mnt/hgfs/shared/APIServerDemo/src/conf/server.conf"
+	confFileName := "/home/yn/APIServerDemo/src/conf/server.conf"
 	if !conf.ParseConf(confFileName) {
 		logger.Error("ParseConf fail")
 		return

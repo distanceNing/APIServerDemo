@@ -12,17 +12,17 @@ const (
 	kQueryOrder
 	kOtherService
 	kExitState
+	kDelivery
 )
 
 func Dispatch(argMap map[string]string, reply *ReplyMsg) (bool) {
 	log.Println("dispatch")
-
-
 	curState := kInitState
 	for ; curState != kExitState; {
 		switch curState {
 		case kInitState:
 			//风控
+			log.Println("begin access risk ctr svr")
 			if !AccessRiskCtrl(argMap) {
 				log.Println("access risk ctl svr error")
 				curState = kExitState
@@ -43,12 +43,21 @@ func Dispatch(argMap map[string]string, reply *ReplyMsg) (bool) {
 			if !channelHandler(argMap,reply){
 				log.Println("call channel fail",reply.ErrorInfo)
 			}
+
+			if argMap["cmd_code"] == "pay"{
+				curState = kDelivery
+			}
 			curState = kExitState
 		case kQueryOrder:
 			queryOrderHandler(argMap,reply)
 		case kOtherService:
 			otherServiceHandler(argMap,reply)
 			log.Println("other request service")
+			curState = kExitState
+		case kDelivery:
+			if !deliveryHandler(argMap,reply){
+				log.Println("call channel fail",reply.ErrorInfo)
+			}
 			curState = kExitState
 		default:
 			log.Println("unknow request service")

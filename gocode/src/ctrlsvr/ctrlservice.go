@@ -28,7 +28,7 @@ func StartService() {
 	rpc.Register(arith)
 	rpc.HandleHTTP()
 	fmt.Println("svr will listen on 8000 ------")
-	err:=http.ListenAndServe(":8000",nil)
+	err:=http.ListenAndServe(":8081",nil)
 
 	if err != nil {
 		fmt.Println("http listen ",err.Error())
@@ -39,6 +39,10 @@ func (t *Arith) CtrlService(requestInfo *RequestInfo, reply *ReplyMsg) error {
 	log.Println("call ctrl service")
 	//业务校验模块
 	argMap := comm.StrToMap(requestInfo.Args)
+	for k,v := range argMap  {
+		log.Println("argMap [%s] : [%s]",k,v)
+	}
+
 	if !VerifyRequest(argMap,reply){
 		log.Println("[error]",reply.ErrorInfo)
 		return nil
