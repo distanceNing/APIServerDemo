@@ -28,7 +28,7 @@ func StartService() {
 	rpc.Register(arith)
 	rpc.HandleHTTP()
 	fmt.Println("svr will listen on 8000 ------")
-	err:=http.ListenAndServe(":8000",nil)
+	err:=http.ListenAndServe(":8081",nil)
 
 	if err != nil {
 		fmt.Println("http listen ",err.Error())

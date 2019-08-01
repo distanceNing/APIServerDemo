@@ -1,5 +1,5 @@
 package comm
-
+/*
 
 
 import (
@@ -24,4 +24,4 @@ func Connectdb()  {
 	}
 	fmt.Println(sqlResult)
 }
-
+*/

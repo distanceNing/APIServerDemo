@@ -17,6 +17,8 @@ func payCallback(argMap map[string]string, reply *ReplyMsg)( bool )  {
 
 func order(argMap record,reply *ReplyMsg)(bool){
 	//访问第三方渠道的支付服务
+        fmt.Println("begin order")
+	fmt.Println("order successful")
 	return true
 }
 
